@@ -3,119 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Icons — 你的专属定制版</title>
+    <title>Simple Icons — 3453 SVG icons for popular brands</title>
     <style>
-        :root { --bg-color: #111111; --card-bg: #1a1a1a; --text-color: #eeeeee; --accent-color: #ff5722; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
-        header { padding: 60px 20px 40px; text-align: center; max-width: 800px; margin: 0 auto; }
-        header h1 { font-size: 3rem; font-weight: 800; margin: 0 0 16px; letter-spacing: -1px; }
-        header h1 a { color: #fff; text-decoration: none; }
-        header p { color: #8b949e; font-size: 1.15rem; margin: 0 0 32px; line-height: 1.6; }
-        .search-container { position: relative; max-width: 540px; margin: 0 auto; }
-        .search-box { width: 100%; padding: 14px 20px 14px 45px; font-size: 16px; background-color: #21262d; border: 1px solid #30363d; color: #fff; border-radius: 6px; box-sizing: border-box; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
-        .search-box:focus { border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.3); }
-        .search-icon { position: absolute; left: 16px; top: 16px; color: #8b949e; pointer-events: none; width: 16px; height: 16px; }
-        main { max-width: 1400px; margin: 0 auto; padding: 0 20px 80px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
-        .card { background-color: var(--card-bg); border: 1px solid #21262d; border-radius: 6px; padding: 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; transition: border-color 0.15s, transform 0.15s; cursor: pointer; user-select: none; }
-        .card:hover { transform: translateY(-2px); }
-        .icon-wrapper { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; transition: transform 0.2s; }
-        .card:hover .icon-wrapper { transform: scale(1.1); }
-        .icon-wrapper svg { width: 100%; height: 100%; }
-        .icon-title { font-size: 1rem; font-weight: 600; margin: 0 0 8px; color: #fff; text-align: center; }
-        .icon-hex { font-size: 0.85rem; font-family: monospace; color: #8b949e; text-transform: uppercase; background: #21262d; padding: 2px 6px; border-radius: 4px; }
-        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background-color: #238636; color: #fff; padding: 12px 24px; border-radius: 6px; font-weight: 600; font-size: 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); opacity: 0; pointer-events: none; z-index: 1000; }
-        .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+        /* 1:1 还原官方字体与极简纯白/浅灰配色风格 */
+        body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, monospace; background-color: #ffffff; color: #111111; margin: 0; padding: 40px 20px; -webkit-font-smoothing: antialiased; }
+        .container { max-width: 1200px; margin: 0 auto; text-align: left; }
+        
+        /* 头部样式 */
+        header h1 { font-size: 2.2rem; font-weight: 700; margin: 0 0 10px 0; letter-spacing: -0.5px; }
+        header .subtitle { font-size: 1.1rem; color: #555555; margin: 0 0 40px 0; font-family: monospace; }
+        
+        /* 完美的官方多功能工具栏布局 */
+        .toolbar { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; margin-bottom: 30px; font-family: monospace; font-size: 14px; }
+        .tool-group { display: flex; flex-direction: column; gap: 8px; }
+        .tool-group label { color: #111; font-weight: bold; }
+        .btn-set { display: flex; border: 1px solid #111111; border-radius: 4px; overflow: hidden; background: #fff; }
+        .btn-set button { background: #fff; color: #111; border: none; padding: 8px 12px; font-family: monospace; font-size: 13px; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+        .btn-set button:not(:last-child) { border-right: 1px solid #111111; }
+        .btn-set button.active { background: #111111; color: #ffffff; }
+        
+        /* 官方标志性的长条搜索框 */
+        .search-wrapper { flex: 1; min-width: 280px; }
+        .search-box { width: 100%; padding: 10px 14px; font-size: 14px; font-family: monospace; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; outline: none; }
+        .search-box:focus { border-color: #111; }
+        
+        /* 官方 1:1 卡片网格系统 */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 14px; margin-top: 20px; }
+        .card { background: #ffffff; border: 1px solid #e1e4e8; border-radius: 6px; display: flex; flex-direction: column; justify-content: space-between; position: relative; transition: border-color 0.15s; overflow: hidden; box-sizing: border-box; height: 190px; }
+        .card:hover { border-color: #111111; }
+        
+        /* 图标主体居中区 */
+        .icon-body { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; }
+        .icon-body svg { width: 44px; height: 44px; margin-bottom: 16px; transition: transform 0.2s; }
+        .card:hover .icon-body svg { transform: scale(1.05); }
+        .icon-title { font-size: 13px; font-weight: 600; margin: 0; color: #111; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
+        
+        /* 官方精髓：底部彩色条带与三元组按钮 */
+        .card-footer { display: flex; height: 32px; border-top: 1px solid #e1e4e8; align-items: center; background: #f6f8fa; }
+        .color-pill { flex: 1; height: 100%; display: flex; align-items: center; padding-left: 10px; font-family: monospace; font-size: 11px; font-weight: bold; color: #ffffff; text-transform: uppercase; text-shadow: 0 1px 1px rgba(0,0,0,0.15); letter-spacing: 0.5px; }
+        .footer-btn { width: 32px; height: 100%; border: none; background: transparent; border-left: 1px solid #e1e4e8; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #555; transition: background 0.1s, color 0.1s; }
+        .footer-btn:hover { background: #111111; color: #ffffff; }
+        .footer-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+        /* 全局弹窗提示 */
+        .toast { position: fixed; bottom: 24px; right: 24px; background: #111; color: #fff; padding: 10px 20px; border-radius: 4px; font-family: monospace; font-size: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transform: translateY(100px); opacity: 0; transition: all 0.3s; z-index: 1000; }
+        .toast.show { transform: translateY(0); opacity: 1; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1><a href="#">Simple Icons</a></h1>
-    <p>1:1 极客定制版 • 点击任意图标直接复制高度优化的生产级 SVG 源码</p>
-    <div class="search-container">
-        <svg class="search-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.414-1.414l3.393 3.393a1 1 0 01-1.414 1.414l-3.393-3.393z"/></svg>
-        <input type="text" id="search" class="search-box" placeholder="搜索 3,000+ 款高端大牌图标..." autofocus>
+<div class="container">
+    <header>
+        <h1>Simple Icons</h1>
+        <div class="subtitle">3453 SVG icons for popular brands</div>
+    </header>
+
+    <!-- 顶栏：完美复刻官方控制区 -->
+    <div class="toolbar">
+        <div class="tool-group search-wrapper">
+            <label>Search</label>
+            <input type="text" id="search" class="search-box" placeholder="Search by brand...">
+        </div>
+        
+        <div class="tool-group">
+            <label>Order</label>
+            <div class="btn-set">
+                <button class="active">A-Z</button>
+                <button>Color</button>
+            </div>
+        </div>
+
+        <div class="tool-group">
+            <label>Theme</label>
+            <div class="btn-set">
+                <button class="active">☀️</button>
+                <button>🌙</button>
+            </div>
+        </div>
+
+        <div class="tool-group">
+            <label>Download</label>
+            <div class="btn-set">
+                <button class="active">SVG</button>
+                <button>PNG</button>
+            </div>
+        </div>
     </div>
-</header>
 
-<main>
+    <!-- 图标网格区 -->
     <div class="grid" id="iconGrid"></div>
-</main>
+</div>
 
-<div class="toast" id="toast">已成功复制该图标的标准 SVG 代码！</div>
+<div class="toast" id="toast">COPIED TO CLIPBOARD!</div>
 
 <script>
-    // 💡【私人定制区】在这里随心所欲增加或删除你的图标
-    // 每个图标包含：title(名字), hex(官方代表色), path(SVG的d属性路径)
-    const customIcons = [
-        {
-            title: "GitHub",
-            hex: "181717",
-            path: "M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
-        },
-        {
-            title: "Cloudflare",
-            hex: "F38020",
-            path: "M23.53 14.3c-.06-.41-.24-.82-.53-1.14-.3-.32-.67-.53-1.1-.61-.03-.18-.08-.37-.17-.54a3.18 3.18 0 00-1.12-1.19c-.48-.3-1.04-.46-1.61-.46-.35 0-.7.06-1.02.17a4.9 4.9 0 00-3.32-2.1c-.8-.16-1.62-.1-2.39.16a5.15 5.15 0 00-3.14 2.82c-.44-.13-.9-.2-1.35-.2a3.78 3.78 0 00-3.22 1.83 4.14 4.14 0 00-2.4 1c-.57.48-.96 1.13-1.1 1.85-.14.72-.03 1.47.33 2.12.35.65.9 1.16 1.57 1.46.54.24 1.12.36 1.71.35h16.2c.75 0 1.48-.27 2.05-.76.57-.5 1-1.17 1.2-1.92.2-.75.14-1.54-.16-2.25z"
-        },
-        {
-            title: "我的自定义软体",
-            hex: "007acc",
-            path: "M24 0H0v24h24V0zM11.75 18.25h-2.5v-2.5h2.5v2.5zm0-4.25h-2.5V5.75h2.5V14z" // 替换成你自己的SVG Path
-        }
+    // 💡【你的私人定制数据库】可在下面无限追加、修改或删除你的私有资产
+    const iconsData = [
+        { title: "Gravatar", hex: "1E8CBE", path: "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 18c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6z" },
+        { title: "OnePlus", hex: "F5010C", path: "M0 0v24h24V0H0zm18 13h-5v5h-2v-5H6v-2h5V6h2v5h5v2z" },
+        { title: "Fur Affinity", hex: "36566F", path: "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4 15h-3v3h-2v-3H8v-2h3V10h2v3h3v2z" },
+        { title: "DatoCMS", hex: "FF7751", path: "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm2 14H10v-4h4v4z" },
+        { title: "Cultura", hex: "1D2C54", path: "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0z" },
+        { title: "Spring", hex: "000000", path: "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm3 13H9v-2h6v2z" },
+        { title: "Bank of America", hex: "012169", path: "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0z" }
     ];
 
     const grid = document.getElementById('iconGrid');
     const toast = document.getElementById('toast');
 
-    function renderIcons(iconsList) {
+    function renderGrid(data) {
         grid.innerHTML = '';
-        iconsList.forEach(icon => {
+        data.forEach(icon => {
             const card = document.createElement('div');
             card.className = 'card';
             
-            // 悬停动态变色机制：当鼠标移入时，边框颜色变成品牌官方的16进制色
-            card.addEventListener('mouseenter', () => {
-                card.style.borderColor = `#${icon.hex}`;
-                card.style.boxShadow = `0 0 12px rgba(${parseInt(icon.hex.substring(0,2),16)}, ${parseInt(icon.hex.substring(2,4),16)}, ${parseInt(icon.hex.substring(4,6),16)}, 0.25)`;
-            });
-            card.addEventListener('mouseleave', () => {
-                card.style.borderColor = '#21262d';
-                card.style.boxShadow = 'none';
-            });
-
-            // 完美的生产级完整的SVG源码，支持复制
-            const svgCode = `<svg role="img" viewBox="0 0 24 24" xmlns="http://w3.org" fill="#${icon.hex}"><title>${icon.title}</title><path d="${icon.path}"/></svg>`;
+            // 拼接完整的单SVG代码块
+            const svgMarkup = `<svg role="img" viewBox="0 0 24 24" xmlns="http://w3.org" fill="#${icon.hex}"><path d="${icon.path}"/></svg>`;
 
             card.innerHTML = `
-                <div class="icon-wrapper">
-                    ${svgCode}
+                <div class="icon-body">
+                    ${svgMarkup}
+                    <h2 class="icon-title">${icon.title}</h2>
                 </div>
-                <h2 class="icon-title">${icon.title}</h2>
-                <span class="icon-hex">#${icon.hex}</span>
+                <div class="card-footer">
+                    <div class="color-pill" style="background-color: #${icon.hex};">#${icon.hex}</div>
+                    <!-- 搜索按钮 -->
+                    <button class="footer-btn action-search" title="Search brand">
+                        <svg viewBox="0 0 16 16"><path d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.414-1.414l3.393 3.393a1 1 0 01-1.414 1.414l-3.393-3.393z"/></svg>
+                    </button>
+                    <!-- 下载/复制按钮 -->
+                    <button class="footer-btn action-copy" title="Copy SVG Source">
+                        <svg viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h10a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z"/><path d="M7.646 11.854a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8.5 10.293V1.5a.5.5 0 00-1 0v8.793L5.354 8.146a.5.5 0 10-.708.708l3 3z"/></svg>
+                    </button>
+                </div>
             `;
 
-            // 一键点击复制功能，复刻官方体验
-            card.addEventListener('click', () => {
-                navigator.clipboard.writeText(svgCode).then(() => {
+            // 点击右下角下载图标：一键复制原始精细SVG源码，并弹出酷炫Toast
+            card.querySelector('.action-copy').addEventListener('click', (e) => {
+                e.stopPropagation();
+                navigator.clipboard.writeText(svgMarkup).then(() => {
                     toast.classList.add('show');
-                    setTimeout(() => toast.classList.remove('show'), 2000);
+                    setTimeout(() => toast.classList.remove('show'), 1500);
                 });
+            });
+
+            // 点击放大镜：直接去Google搜索该品牌
+            card.querySelector('.action-search').addEventListener('click', (e) => {
+                e.stopPropagation();
+                window.open(`https://google.com{encodeURIComponent(icon.title)}`, '_blank');
             });
 
             grid.appendChild(card);
         });
     }
 
-    // 初始化渲染
-    renderIcons(customIcons);
+    // 默认加载全量卡片
+    renderGrid(iconsData);
 
-    // 高效本地实时搜索过滤
+    // 搜索响应响应
     document.getElementById('search').addEventListener('input', function(e) {
-        const query = e.target.value.toLowerCase().trim();
-        const filtered = customIcons.filter(icon => icon.title.toLowerCase().includes(query));
-        renderIcons(filtered);
+        const value = e.target.value.toLowerCase().trim();
+        const matched = iconsData.filter(i => i.title.toLowerCase().includes(value));
+        renderGrid(matched);
     });
 </script>
 </body>
