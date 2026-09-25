@@ -3,169 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Icons — 3453 SVG icons for popular brands</title>
+    <title>Simple Icons — 你的专属私人定制版</title>
     <style>
-        /* 1:1 还原官方字体与极简纯白/浅灰配色风格 */
-        body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, monospace; background-color: #ffffff; color: #111111; margin: 0; padding: 40px 20px; -webkit-font-smoothing: antialiased; }
-        .container { max-width: 1200px; margin: 0 auto; text-align: left; }
-        
-        /* 头部样式 */
-        header h1 { font-size: 2.2rem; font-weight: 700; margin: 0 0 10px 0; letter-spacing: -0.5px; }
-        header .subtitle { font-size: 1.1rem; color: #555555; margin: 0 0 40px 0; font-family: monospace; }
-        
-        /* 完美的官方多功能工具栏布局 */
-        .toolbar { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; margin-bottom: 30px; font-family: monospace; font-size: 14px; }
+        :root { --bg: #fff; --card: #fff; --text: #111; --border: #e1e4e8; --footer: #f6f8fa; }
+        [data-theme="dark"] { --bg: #111; --card: #1a1a1a; --text: #eee; --border: #2d333b; --footer: #22272e; }
+        body { font-family: "Inter", monospace; background: var(--bg); color: var(--text); margin: 0; padding: 40px 20px; transition: background 0.15s; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header h1 { font-size: 2.2rem; margin: 0 0 10px 0; }
+        header .subtitle { font-size: 1.1rem; color: #555; margin: 0 0 40px 0; }
+        [data-theme="dark"] header .subtitle { color: #8b949e; }
+        .toolbar { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; margin-bottom: 30px; font-size: 14px; font-weight: bold; }
         .tool-group { display: flex; flex-direction: column; gap: 8px; }
-        .tool-group label { color: #111; font-weight: bold; }
-        .btn-set { display: flex; border: 1px solid #111111; border-radius: 4px; overflow: hidden; background: #fff; }
-        .btn-set button { background: #fff; color: #111; border: none; padding: 8px 12px; font-family: monospace; font-size: 13px; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center; }
-        .btn-set button:not(:last-child) { border-right: 1px solid #111111; }
-        .btn-set button.active { background: #111111; color: #ffffff; }
-        
-        /* 官方标志性的长条搜索框 */
+        .btn-set { display: flex; border: 1px solid var(--text); border-radius: 4px; overflow: hidden; }
+        .btn-set button { background: var(--bg); color: var(--text); border: none; padding: 8px 12px; font-weight: bold; cursor: pointer; outline: none; }
+        .btn-set button.active { background: var(--text); color: var(--bg); }
         .search-wrapper { flex: 1; min-width: 280px; }
-        .search-box { width: 100%; padding: 10px 14px; font-size: 14px; font-family: monospace; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; outline: none; }
-        .search-box:focus { border-color: #111; }
-        
-        /* 官方 1:1 卡片网格系统 */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 14px; margin-top: 20px; }
-        .card { background: #ffffff; border: 1px solid #e1e4e8; border-radius: 6px; display: flex; flex-direction: column; justify-content: space-between; position: relative; transition: border-color 0.15s; overflow: hidden; box-sizing: border-box; height: 190px; }
-        .card:hover { border-color: #111111; }
-        
-        /* 图标主体居中区 */
+        .search-box { width: 100%; padding: 10px 14px; border: 1px solid #ccc; border-radius: 4px; background: var(--card); color: var(--text); box-sizing: border-box; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 14px; }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; display: flex; flex-direction: column; justify-content: space-between; height: 190px; cursor: pointer; overflow: hidden; }
+        .card:hover { border-color: var(--text); }
         .icon-body { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; }
-        .icon-body svg { width: 44px; height: 44px; margin-bottom: 16px; transition: transform 0.2s; }
-        .card:hover .icon-body svg { transform: scale(1.05); }
-        .icon-title { font-size: 13px; font-weight: 600; margin: 0; color: #111; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
-        
-        /* 官方精髓：底部彩色条带与三元组按钮 */
-        .card-footer { display: flex; height: 32px; border-top: 1px solid #e1e4e8; align-items: center; background: #f6f8fa; }
-        .color-pill { flex: 1; height: 100%; display: flex; align-items: center; padding-left: 10px; font-family: monospace; font-size: 11px; font-weight: bold; color: #ffffff; text-transform: uppercase; text-shadow: 0 1px 1px rgba(0,0,0,0.15); letter-spacing: 0.5px; }
-        .footer-btn { width: 32px; height: 100%; border: none; background: transparent; border-left: 1px solid #e1e4e8; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #555; transition: background 0.1s, color 0.1s; }
-        .footer-btn:hover { background: #111111; color: #ffffff; }
+        .icon-body svg { width: 44px; height: 44px; margin-bottom: 16px; }
+        .icon-title { font-size: 13px; margin: 0; text-align: center; width: 100%; overflow: hidden; text-overflow: ellipsis; }
+        .card-footer { display: flex; height: 32px; border-top: 1px solid var(--border); background: var(--footer); }
+        .color-pill { flex: 1; display: flex; align-items: center; padding-left: 10px; font-size: 11px; font-weight: bold; color: #fff; text-shadow: 0 1px 1px rgba(0,0,0,0.2); }
+        .footer-btn { width: 32px; border: none; background: transparent; border-left: 1px solid var(--border); cursor: pointer; display: flex; align-items: center; justify-content: center; color: #555; }
+        [data-theme="dark"] .footer-btn { color: #768390; }
+        .footer-btn:hover { background: var(--text); color: var(--bg); }
         .footer-btn svg { width: 14px; height: 14px; fill: currentColor; }
-
-        /* 全局弹窗提示 */
-        .toast { position: fixed; bottom: 24px; right: 24px; background: #111; color: #fff; padding: 10px 20px; border-radius: 4px; font-family: monospace; font-size: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transform: translateY(100px); opacity: 0; transition: all 0.3s; z-index: 1000; }
+        .toast { position: fixed; bottom: 24px; right: 24px; background: #238636; color: #fff; padding: 10px 20px; border-radius: 4px; font-size: 12px; font-weight: bold; opacity: 0; transform: translateY(100px); transition: 0.3s; z-index: 1000; }
         .toast.show { transform: translateY(0); opacity: 1; }
     </style>
 </head>
 <body>
-
 <div class="container">
     <header>
         <h1>Simple Icons</h1>
         <div class="subtitle">3453 SVG icons for popular brands</div>
     </header>
-
-    <!-- 顶栏：完美复刻官方控制区 -->
     <div class="toolbar">
-        <div class="tool-group search-wrapper">
-            <label>Search</label>
-            <input type="text" id="search" class="search-box" placeholder="Search by brand...">
-        </div>
-        
-        <div class="tool-group">
-            <label>Order</label>
-            <div class="btn-set">
-                <button class="active">A-Z</button>
-                <button>Color</button>
-            </div>
-        </div>
-
-        <div class="tool-group">
-            <label>Theme</label>
-            <div class="btn-set">
-                <button class="active">☀️</button>
-                <button>🌙</button>
-            </div>
-        </div>
-
-        <div class="tool-group">
-            <label>Download</label>
-            <div class="btn-set">
-                <button class="active">SVG</button>
-                <button>PNG</button>
-            </div>
-        </div>
+        <div class="tool-group search-wrapper"><label>Search</label><input type="text" id="search" class="search-box" placeholder="Search by brand..."></div>
+        <div class="tool-group"><label>Order</label><div class="btn-set" id="orderSet"><button class="active" data-order="az">A-Z</button><button data-order="color">Color</button></div></div>
+        <div class="tool-group"><label>Theme</label><div class="btn-set" id="themeSet"><button class="active" data-theme-btn="light">☀️</button><button data-theme-btn="dark">🌙</button></div></div>
+        <div class="tool-group"><label>Download</label><div class="btn-set" id="downloadSet"><button class="active" data-type="svg">SVG</button><button data-type="png">PNG</button></div></div>
     </div>
-
-    <!-- 图标网格区 -->
     <div class="grid" id="iconGrid"></div>
 </div>
-
-<div class="toast" id="toast">COPIED TO CLIPBOARD!</div>
-
+<div class="toast" id="toast">COPIED!</div>
+<canvas id="convertCanvas" style="display:none;" width="512" height="512"></canvas>
 <script>
-    // 💡【你的私人定制数据库】可在下面无限追加、修改或删除你的私有资产
-    const iconsData = [
-        { title: "Gravatar", hex: "1E8CBE", path: "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 18c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6z" },
-        { title: "OnePlus", hex: "F5010C", path: "M0 0v24h24V0H0zm18 13h-5v5h-2v-5H6v-2h5V6h2v5h5v2z" },
-        { title: "Fur Affinity", hex: "36566F", path: "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4 15h-3v3h-2v-3H8v-2h3V10h2v3h3v2z" },
-        { title: "DatoCMS", hex: "FF7751", path: "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm2 14H10v-4h4v4z" },
-        { title: "Cultura", hex: "1D2C54", path: "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0z" },
-        { title: "Spring", hex: "000000", path: "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm3 13H9v-2h6v2z" },
-        { title: "Bank of America", hex: "012169", path: "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0z" }
-    ];
+    let iconsData = [], currentOrder = 'az', currentDownloadType = 'svg';
+    const grid = document.getElementById('iconGrid'), toast = document.getElementById('toast');
 
-    const grid = document.getElementById('iconGrid');
-    const toast = document.getElementById('toast');
+    function showToast(text) { toast.textContent = text; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 1500); }
 
-    function renderGrid(data) {
+    function triggerDownload(icon) {
+        const filename = `${icon.title.toLowerCase().replace(/\s+/g, '-')}.${currentDownloadType}`;
+        const svgString = `<svg role="img" viewBox="0 0 24 24" xmlns="http://w3.org" fill="#${icon.hex}"><path d="${icon.path}"/></svg>`;
+        if (currentDownloadType === 'svg') {
+            const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+            execDownload(URL.createObjectURL(blob), filename, 'SVG DOWNLOADED!');
+        } else {
+            const canvas = document.getElementById('convertCanvas'), ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const img = new Image(), svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' }), url = URL.createObjectURL(svgBlob);
+            img.onload = function () {
+                ctx.drawImage(img, 0, 0, 512, 512); URL.revokeObjectURL(url);
+                execDownload(canvas.toDataURL('image/png'), filename, 'PNG DOWNLOADED!');
+            };
+            img.src = url;
+        }
+    }
+
+    function execDownload(url, filename, msg) {
+        const a = document.createElement('a'); a.href = url; a.download = filename; document.body.appendChild(a); a.click(); document.body.removeChild(a); showToast(msg);
+    }
+
+    function renderGrid() {
+        let data = [...iconsData];
+        const searchVal = document.getElementById('search').value.toLowerCase().trim();
+        if (searchVal) data = data.filter(i => i.title.toLowerCase().includes(searchVal));
+        if (currentOrder === 'az') data.sort((a, b) => a.title.localeCompare(b.title));
+        else if (currentOrder === 'color') data.sort((a, b) => a.hex.localeCompare(b.hex));
+
         grid.innerHTML = '';
         data.forEach(icon => {
-            const card = document.createElement('div');
-            card.className = 'card';
-            
-            // 拼接完整的单SVG代码块
-            const svgMarkup = `<svg role="img" viewBox="0 0 24 24" xmlns="http://w3.org" fill="#${icon.hex}"><path d="${icon.path}"/></svg>`;
+            const card = document.createElement('div'); card.className = 'card';
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const renderHex = (isDark && icon.hex === '000000') ? 'ffffff' : icon.hex;
+            const svgMarkup = `<svg role="img" viewBox="0 0 24 24" xmlns="http://w3.org" fill="#${renderHex}"><path d="${icon.path}"/></svg>`;
 
             card.innerHTML = `
-                <div class="icon-body">
-                    ${svgMarkup}
-                    <h2 class="icon-title">${icon.title}</h2>
-                </div>
+                <div class="icon-body">${svgMarkup}<h2 class="icon-title">${icon.title}</h2></div>
                 <div class="card-footer">
-                    <div class="color-pill" style="background-color: #${icon.hex};">#${icon.hex}</div>
-                    <!-- 搜索按钮 -->
-                    <button class="footer-btn action-search" title="Search brand">
-                        <svg viewBox="0 0 16 16"><path d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.414-1.414l3.393 3.393a1 1 0 01-1.414 1.414l-3.393-3.393z"/></svg>
-                    </button>
-                    <!-- 下载/复制按钮 -->
-                    <button class="footer-btn action-copy" title="Copy SVG Source">
-                        <svg viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h10a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z"/><path d="M7.646 11.854a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8.5 10.293V1.5a.5.5 0 00-1 0v8.793L5.354 8.146a.5.5 0 10-.708.708l3 3z"/></svg>
-                    </button>
-                </div>
-            `;
+                    <div class="color-pill" style="background: #${icon.hex};">#${icon.hex}</div>
+                    <button class="footer-btn action-search"><svg viewBox="0 0 16 16"><path d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.414-1.414l3.393 3.393a1 1 0 01-1.414 1.414l-3.393-3.393z"/></svg></button>
+                    <button class="footer-btn action-dl"><svg viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h10a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z"/><path d="M7.646 11.854a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8.5 10.293V1.5a.5.5 0 00-1 0v8.793L5.354 8.146a.5.5 0 10-.708.708l3 3z"/></svg></button>
+                </div>`;
 
-            // 点击右下角下载图标：一键复制原始精细SVG源码，并弹出酷炫Toast
-            card.querySelector('.action-copy').addEventListener('click', (e) => {
-                e.stopPropagation();
-                navigator.clipboard.writeText(svgMarkup).then(() => {
-                    toast.classList.add('show');
-                    setTimeout(() => toast.classList.remove('show'), 1500);
-                });
-            });
-
-            // 点击放大镜：直接去Google搜索该品牌
-            card.querySelector('.action-search').addEventListener('click', (e) => {
-                e.stopPropagation();
-                window.open(`https://google.com{encodeURIComponent(icon.title)}`, '_blank');
-            });
-
+            card.addEventListener('click', () => { navigator.clipboard.writeText(svgMarkup).then(() => showToast('COPIED SVG!')); });
+            card.querySelector('.action-dl').addEventListener('click', (e) => { e.stopPropagation(); triggerDownload(icon); });
+            card.querySelector('.action-search').addEventListener('click', (e) => { e.stopPropagation(); window.open(`https://google.com{encodeURIComponent(icon.title)}`, '_blank'); });
             grid.appendChild(card);
         });
     }
 
-    // 默认加载全量卡片
-    renderGrid(iconsData);
+    // 异步加载分离的数据集文件
+    fetch('data.json').then(res => res.json()).then(json => { iconsData = json; renderGrid(); });
 
-    // 搜索响应响应
-    document.getElementById('search').addEventListener('input', function(e) {
-        const value = e.target.value.toLowerCase().trim();
-        const matched = iconsData.filter(i => i.title.toLowerCase().includes(value));
-        renderGrid(matched);
-    });
+    document.getElementById('orderSet').addEventListener('click', (e) => { const b = e.target.closest('button'); if(b){ document.querySelectorAll('#orderSet button').forEach(x => x.classList.remove('active')); b.classList.add('active'); currentOrder = b.dataset.order; renderGrid(); } });
+    document.getElementById('themeSet').addEventListener('click', (e) => { const b = e.target.closest('button'); if(b){ document.querySelectorAll('#themeSet button').forEach(x => x.classList.remove('active')); b.classList.add('active'); document.documentElement.setAttribute('data-theme', b.dataset.themeBtn); renderGrid(); } });
+    document.getElementById('downloadSet').addEventListener('click', (e) => { const b = e.target.closest('button'); if(b){ document.querySelectorAll('#downloadSet button').forEach(x => x.classList.remove('active')); b.classList.add('active'); currentDownloadType = b.dataset.type; } });
+    document.getElementById('search').addEventListener('input', renderGrid);
 </script>
 </body>
 </html>
