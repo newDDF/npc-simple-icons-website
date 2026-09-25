@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的专属 Simple Icons 图标库</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #111; color: #fff; margin: 0; padding: 20px; text-align: center; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { color: #ff5722; font-size: 2.5rem; margin-bottom: 10px; }
+        p.subtitle { color: #888; margin-bottom: 30px; }
+        .search-box { width: 100%; max-width: 600px; padding: 14px 20px; font-size: 16px; background: #222; border: 1px solid #333; color: #fff; border-radius: 30px; margin-bottom: 40px; box-sizing: border-box; outline: none; transition: border 0.3s; }
+        .search-box:focus { border-color: #ff5722; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+        .card { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; padding: 24px 12px; text-align: center; transition: all 0.2s ease; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .card:hover { transform: translateY(-4px); border-color: #ff5722; background: #222; }
+        .card img { width: 40px; height: 40px; margin-bottom: 12px; filter: drop-shadow(0px 0px 2px rgba(255,255,255,0.1)); }
+        .card p { margin: 0; font-size: 13px; color: #ddd; font-weight: 500; word-break: break-all; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Simple Icons 私人订制版</h1>
+    <p class="subtitle">属于我自己的图标托管分发中心</p>
+    <input type="text" id="search" class="search-box" placeholder="🔍 键入名称实时检索私有图标库...">
+    
+    <div class="grid" id="iconGrid">
+        <!-- 这是你的私有定制区：想加什么图标，直接复制下方这一块加到这里即可 -->
+        <div class="card" data-name="github">
+            <img src="https://jsdelivr.net" style="filter: invert(1);" alt="GitHub">
+            <p>GitHub</p>
+        </div>
+        <div class="card" data-name="cloudflare">
+            <img src="https://jsdelivr.net" alt="Cloudflare">
+            <p>Cloudflare</p>
+        </div>
+        <!-- 私人定制区结束 -->
+    </div>
+</div>
+
+<script>
+    // 动态搜索过滤
+    document.getElementById('search').addEventListener('input', function(e) {
+        const query = e.target.value.toLowerCase().trim();
+        document.querySelectorAll('.card').forEach(card => {
+            const name = card.getAttribute('data-name').toLowerCase();
+            card.style.display = name.includes(query) ? 'flex' : 'none';
+        });
+    });
+</script>
+</body>
+</html>
